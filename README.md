@@ -48,6 +48,7 @@ To deploy this hybrid environment, follow these steps from your local terminal:
 cd terraform/azure
 terraform init
 terraform apply
+```
 
 *Note: Terraform will display the VM's public_ip in the outputs.*
 
@@ -123,3 +124,11 @@ This project was developed as my **Final Degree Project (TFG)**, representing th
 
 ---
 *Developed with ❤️ as a demonstration of professional DevOps practices.*
+
+
+
+
+
+
+
+
