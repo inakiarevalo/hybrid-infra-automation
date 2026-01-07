@@ -65,13 +65,13 @@ ubuntu_server ansible_host=<TARGET_IP> ansible_user=<SSH_USER>
 > **Azure (Cloud):** Replace `<TARGET_IP>` with the public IP provided by Terraform after deployment.
 
 > [!NOTE]
-> **Local (On-premises):** Replace `<TARGET_IP>` with the local IP address of your server (e.g. `10.0.0.4`).
+> **Local (On-premises):** Replace `<TARGET_IP>` with the local IP address of your server (e.g. `10.0.0.4`, `192.168.0.2`).
 
 > [!TIP]
-> **User configuration:** Replace `<SSH_USER>` with the SSH username of the target machine (e.g. `inaki`, `sysadmin01`, `azureuser`).
+> **User configuration:** Replace `<SSH_USER>` with the SSH username of the target machine (e.g. `sysadmin01`, `azureuser`).
 
 ### 3. Deploy Configuration (Ansible)
-Run the following command to start the automation process. This will apply all roles (Security, Nginx, Users) to your target server:
+Run the following command to start the automation process. This will apply all roles (`common`, `users`, `nginx`, `maintenance`) to your target server:
 
 
 From the /ansible directory:
@@ -93,7 +93,7 @@ ansible-playbook -i inventory.ini site.yml -k -K
 Below is the organized directory structure of this hybrid environment:
 
 ```text
-.
+
 ├── terraform/
 │   └── azure/
 │       ├── main.tf             # Infrastructure definition
@@ -123,7 +123,7 @@ terraform destroy
 
 ## 🏆 Academic Recognition
 
-This project was developed as my **Final Degree Project (TFG)**, representing the culmination of my studies and my specialization in Cloud Infrastructure and DevOps.
+This project was developed as my **Final Degree Project**, representing the culmination of my studies and my specialization in Cloud Infrastructure and DevOps.
 
 * **Final Grade**: **10 / 10 (Honors)** 🎓
 * **Competencies**: Infrastructure as Code (IaC), Configuration Management, Hybrid Cloud Architecture, and Security Hardening.
