@@ -1,7 +1,7 @@
 ---
-# vars file for entorno_basico
+# vars file for common
 
-server_hostname: "servidor01"
+server_hostname: "server01"
 timezone: "Europe/Madrid"
 basic_tools:
   - curl

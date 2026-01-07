@@ -1,0 +1,4 @@
+---
+# defaults file for maintenance
+
+maintenance_dir: /usr/local/bin

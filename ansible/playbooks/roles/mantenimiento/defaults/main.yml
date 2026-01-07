@@ -1,5 +1,0 @@
----
-# defaults file for mantenimiento
-# Ruta donde se copiarán los scripts de mantenimiento
-
-mantenimiento_dir: /usr/local/bin

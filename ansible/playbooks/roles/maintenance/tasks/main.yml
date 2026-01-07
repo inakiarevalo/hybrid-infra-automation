@@ -1,0 +1,22 @@
+---
+# tasks file for maintenance
+
+- name: Copy maintenance scripts to the server
+  copy:
+    src: "{{ item }}"
+    dest: "{{ maintenance_dir }}/"
+    owner: root
+    group: root
+    mode: '0755'
+  loop:
+    - restart_nginx.sh
+    - backup_infra-cloud.sh
+    - restaurar_backup_infra-cloud.sh
+
+- name: Schedule daily maintenance task (backup + restart)
+  cron:
+    name: "Daily maintenance execution"
+    minute: "0"
+    hour: "3"
+    user: root
+    job: "{{ maintenance_dir }}/backup_infra-cloud.sh && {{ maintenance_dir }}/restart_nginx.sh"

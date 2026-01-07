@@ -1,5 +1,0 @@
----
-# defaults file for usuarios
-
-# Variables por defecto del rol usuarios
-ssh_public_key_path: "~/.ssh/id_rsa.pub"

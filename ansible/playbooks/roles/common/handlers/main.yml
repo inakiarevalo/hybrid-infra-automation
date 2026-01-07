@@ -1,10 +1,10 @@
 ---
-# handlers file for entorno_basico
+# handlers file for common
 
-- name: Reiniciar hostname
+- name: Restart hostname
   command: hostnamectl set-hostname "{{ server_hostname }}"
   become: yes
 
-- name: Reiniciar UFW
+- name: Restart UFW
   command: ufw reload
   become: yes

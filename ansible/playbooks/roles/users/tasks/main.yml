@@ -1,12 +1,12 @@
 ---
-# tasks file for usuarios
+# tasks file for users
 
-- name: Crear grupo devops
+- name: Create devops group
   group:
     name: devops
     state: present
 
-- name: Crear usuarios administrativos
+- name: Create administrative users
   user:
     name: "{{ item }}"
     group: sudo
@@ -15,7 +15,7 @@
     password: "{{ user_password_hash }}"
   loop: "{{ admin_users }}"
 
-- name: Crear usuarios DevOps
+- name: Create DevOps users
   user:
     name: "{{ item }}"
     group: devops
@@ -24,7 +24,7 @@
     password: "{{ user_password_hash }}"
   loop: "{{ devops_users }}"
 
-- name: Crear directorio .ssh para cada usuario
+- name: Create .ssh directory for each user
   file:
     path: "/home/{{ item }}/.ssh"
     state: directory
@@ -33,7 +33,7 @@
     mode: '0700'
   loop: "{{ admin_users + devops_users }}"
 
-- name: Copiar clave publica del host de control a cada usuario
+- name: Copy public key from control host to each user
   authorized_key:
     user: "{{ item }}"
     state: present

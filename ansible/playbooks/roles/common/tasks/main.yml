@@ -1,0 +1,36 @@
+---
+# tasks file for common
+# Role: common
+# Description: Initial server preparation, package installation and basic configuration
+
+- name: Update system packages
+  apt:
+    update_cache: yes
+    upgrade: dist
+
+- name: Set system timezone
+  timezone:
+    name: "{{ timezone }}"
+
+- name: Set system hostname
+  hostname:
+    name: "{{ server_hostname }}"
+  notify: Restart hostname
+
+- name: Install essential packages
+  apt:
+    name: "{{ basic_tools }}"
+    state: present
+    update_cache: yes
+
+- name: Basic firewall configuration (UFW)
+  ufw:
+    rule: allow
+    port: "{{ item }}"
+    proto: tcp
+  loop: "{{ ufw_allowed_ports }}"
+  notify: Restart UFW
+
+- name: Enable  UFW firewall
+  ufw:
+    state: enabled
