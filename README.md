@@ -56,9 +56,10 @@ terraform apply
 
 Edit the `ansible/inventory.ini` file and replace the placeholders with your environment values:
 
-```ini
+```bash
 [servers]
 ubuntu_server ansible_host=<TARGET_IP> ansible_user=<SSH_USER>
+```
 
 > [!IMPORTANT]
 > **Azure (Cloud):** Replace `<TARGET_IP>` with the public IP provided by Terraform after deployment.
@@ -72,9 +73,12 @@ ubuntu_server ansible_host=<TARGET_IP> ansible_user=<SSH_USER>
 ### 3. Deploy Configuration (Ansible)
 Run the following command to start the automation process. This will apply all roles (Security, Nginx, Users) to your target server:
 
+
+From the /ansible directory:
+
 ```bash
-# From the /ansible directory:
 ansible-playbook -i inventory.ini site.yml -k -K
+```
 
 > [!TIP]
 > **What do these flags mean?**
@@ -104,6 +108,7 @@ Below is the organized directory structure of this hybrid environment:
             ├── users/          # Identity management
             ├── nginx/          # Web server deployment
             └── maintenance/    # Backups & Cron jobs
+```
 
 ## 🧹 Resource Cleanup
 > [!CAUTION]
@@ -112,6 +117,7 @@ Below is the organized directory structure of this hybrid environment:
 
 ```bash
 terraform destroy
+```
 
 ---
 
