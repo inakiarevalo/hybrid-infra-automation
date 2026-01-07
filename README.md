@@ -43,6 +43,8 @@ The configuration is organized into four specialized roles to ensure scalability
 To deploy this hybrid environment, follow these steps from your local terminal:
 
 ### 1. Provision Infrastructure (Terraform)
+
+```bash
 cd terraform/azure
 terraform init
 terraform apply
@@ -50,29 +52,74 @@ terraform apply
 *Note: Terraform will display the VM's public_ip in the outputs.*
 
 ### 2. Configure Ansible Inventory
-Edit your `ansible/inventory.ini` file. This setup supports both Cloud (Azure) and Local (On-premises) targets. Update the IP and user to match your environment:
 
+Edit the `ansible/inventory.ini` file and replace the placeholders with your environment values:
+
+```ini
 [servers]
-# For Azure: Use the Public IP from Terraform
-# For Local: Use your On-premises IP (e.g., 10.0.0.4)
-# Change 'ansible_user' to your target username (e.g., inaki, sysadmin01)
+ubuntu_server ansible_host=<TARGET_IP> ansible_user=<SSH_USER>
 
-ubuntu_server ansible_host=XX.XX.XX.XX ansible_user=sysadmin01
+> [!IMPORTANT]
+> **Azure (Cloud):** Replace `<TARGET_IP>` with the public IP provided by Terraform after deployment.
+
+> [!NOTE]
+> **Local (On-premises):** Replace `<TARGET_IP>` with the local IP address of your server (e.g. `10.0.0.4`).
+
+> [!TIP]
+> **User configuration:** Replace `<SSH_USER>` with the SSH username of the target machine (e.g. `inaki`, `sysadmin01`, `azureuser`).
 
 ### 3. Deploy Configuration (Ansible)
-cd ../../ansible
-ansible-playbook site.yml
+Run the following command to start the automation process. This will apply all roles (Security, Nginx, Users) to your target server:
+
+```bash
+# From the /ansible directory:
+ansible-playbook -i inventory.ini site.yml -k -K
+
+> [!TIP]
+> **What do these flags mean?**
+> * `-i inventory.ini`: Tells Ansible which servers to connect to.
+> * `-k`: Prompts for the **SSH password** of the user.
+> * `-K`: Prompts for the **Sudo password** (to install software).
 
 ---
 
 ## 📂 Repository Structure
-* **📁 /terraform/azure**: IaC files for cloud resources (main.tf, outputs.tf).
-* **📁 /ansible**: Playbooks, inventory, and modular roles (common, users, nginx, maintenance).
-* **🔒 Security**: All authentication is handled via SSH Key Pairs; no passwords stored.
+
+Below is the organized directory structure of this hybrid environment:
+
+```text
+.
+├── terraform/
+│   └── azure/
+│       ├── main.tf             # Infrastructure definition
+│       └── outputs.tf          # Public IP and resource outputs
+└── ansible/
+    ├── ansible.cfg             # Ansible configuration and defaults
+    ├── inventory.ini           # Server definitions (Cloud & On-prem)
+    └── playbooks/
+        ├── site.yml            # Main execution playbook
+        └── roles/              # Modular automation tasks
+            ├── common/         # Security & Updates
+            ├── users/          # Identity management
+            ├── nginx/          # Web server deployment
+            └── maintenance/    # Backups & Cron jobs
 
 ## 🧹 Resource Cleanup
-To avoid costs in Azure after testing:
+> [!CAUTION]
+> **Resource Cleanup**
+> To avoid unexpected costs in your Azure account, always destroy the infrastructure when finished:
+
+```bash
 terraform destroy
 
 ---
-*🎓 This project was developed as part of a **Final Degree Project (TFG)** with a grade of **10/10**, focused on Hybrid Infrastructure Automation and DevOps best practices.*
+
+## 🏆 Academic Recognition
+
+This project was developed as my **Final Degree Project (TFG)**, representing the culmination of my studies and my specialization in Cloud Infrastructure and DevOps.
+
+* **Final Grade**: **10 / 10 (Honors)** 🎓
+* **Competencies**: Infrastructure as Code (IaC), Configuration Management, Hybrid Cloud Architecture, and Security Hardening.
+
+---
+*Developed with ❤️ as a demonstration of professional DevOps practices.*
