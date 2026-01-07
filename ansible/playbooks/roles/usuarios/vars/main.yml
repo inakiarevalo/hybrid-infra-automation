@@ -1,0 +1,12 @@
+---
+# vars file for usuarios
+
+admin_users:
+  - sysadmin01
+  - sysadmin02
+
+devops_users:
+  - sysadmin03
+  - sysadmin04
+
+user_password_hash: $6$mWT5tjJvTUd18tui$8G1jGYyJcXhQTQuXnfEblgYAxD4ebSLbtn6vGC1dMuqZzxXFzuKy6vDE5v2ZKX8FyM87u6azs1NWo11fbJm1y/

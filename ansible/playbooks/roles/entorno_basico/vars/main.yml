@@ -1,0 +1,18 @@
+---
+# vars file for entorno_basico
+
+server_hostname: "servidor01"
+timezone: "Europe/Madrid"
+basic_tools:
+  - curl
+  - wget
+  - vim
+  - nano
+  - htop
+  - tree
+  - net-tools
+  - iputils-ping
+ufw_allowed_ports:
+  - 22
+  - 80
+  - 443

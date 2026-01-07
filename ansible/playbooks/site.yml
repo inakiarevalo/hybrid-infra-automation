@@ -1,0 +1,9 @@
+---
+- name: Complete Server Configuration
+  hosts: servidores
+  become: yes
+  roles:
+    - entorno_basico
+    - usuarios
+    - nginx
+    - mantenimiento

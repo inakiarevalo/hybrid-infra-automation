@@ -1,0 +1,7 @@
+---
+# vars file for nginx
+
+nginx_config_path: /etc/nginx/sites-available
+nginx_enabled_path: /etc/nginx/sites-enabled
+default_sites:
+  - default

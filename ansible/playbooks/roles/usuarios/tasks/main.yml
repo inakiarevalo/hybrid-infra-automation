@@ -1,0 +1,41 @@
+---
+# tasks file for usuarios
+
+- name: Crear grupo devops
+  group:
+    name: devops
+    state: present
+
+- name: Crear usuarios administrativos
+  user:
+    name: "{{ item }}"
+    group: sudo
+    shell: /bin/bash
+    state: present
+    password: "{{ user_password_hash }}"
+  loop: "{{ admin_users }}"
+
+- name: Crear usuarios DevOps
+  user:
+    name: "{{ item }}"
+    group: devops
+    shell: /bin/bash
+    state: present
+    password: "{{ user_password_hash }}"
+  loop: "{{ devops_users }}"
+
+- name: Crear directorio .ssh para cada usuario
+  file:
+    path: "/home/{{ item }}/.ssh"
+    state: directory
+    owner: "{{ item }}"
+    group: sudo
+    mode: '0700'
+  loop: "{{ admin_users + devops_users }}"
+
+- name: Copiar clave publica del host de control a cada usuario
+  authorized_key:
+    user: "{{ item }}"
+    state: present
+    key: "{{ lookup('file', ssh_public_key_path) }}"
+  loop: "{{ admin_users + devops_users }}"

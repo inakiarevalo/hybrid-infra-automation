@@ -1,0 +1,9 @@
+---
+# defaults file for nginx
+
+site_name: infra-cloud
+site_root: /var/www/infra-cloud
+nginx_user: sysadmin01
+nginx_group: devops
+nginx_port: 80
+template_src: infra-cloud.j2

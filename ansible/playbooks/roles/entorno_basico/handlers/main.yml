@@ -1,0 +1,10 @@
+---
+# handlers file for entorno_basico
+
+- name: Reiniciar hostname
+  command: hostnamectl set-hostname "{{ server_hostname }}"
+  become: yes
+
+- name: Reiniciar UFW
+  command: ufw reload
+  become: yes

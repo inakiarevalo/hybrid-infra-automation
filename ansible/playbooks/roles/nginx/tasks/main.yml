@@ -1,0 +1,75 @@
+---
+# tasks file for nginx
+
+- name: Instalar Nginx
+  apt:
+    name: nginx
+    state: present
+    update_cache: yes
+  become: yes
+  tags: nginx
+
+- name: Asegurar que el servicio Nginx está habilitado y activo
+  service:
+    name: nginx
+    state: started
+    enabled: yes
+  become: yes
+  tags: nginx
+
+- name: Crear directorio del sitio web
+  file:
+    path: "{{ site_root }}"
+    state: directory
+    owner: "{{ nginx_user }}"
+    group: "{{ nginx_group }}"
+    mode: '0755'
+  become: yes
+  tags: nginx
+
+- name: Copiar archivos estáticos del sitio web (index.html y style.css)
+  copy:
+    src: "{{ item }}"
+    dest: "{{ site_root }}/"
+    owner: "{{ nginx_user }}"
+    group: "{{ nginx_group }}"
+    mode: '0644'
+  with_items:
+    - files/index.html
+    - files/style.css
+  become: yes
+  tags: nginx
+
+- name: Configurar archivo de Nginx para el sitio infra-cloud
+  template:
+    src: "{{ template_src }}"
+    dest: "{{ nginx_config_path }}/{{ site_name }}"
+    owner: root
+    group: "{{ nginx_group }}"
+    mode: '0640'
+  become: yes
+  tags: nginx
+
+- name: Crear enlace simbólico en sites-enabled
+  file:
+    src: "{{ nginx_config_path }}/{{ site_name }}"
+    dest: "{{ nginx_enabled_path }}/{{ site_name }}"
+    state: link
+  become: yes
+  tags: nginx
+
+- name: Desactivar sitios por defecto de Nginx
+  file:
+    path: "{{ nginx_enabled_path }}/{{ item }}"
+    state: absent
+  loop: "{{ default_sites }}"
+  become: yes
+  tags: nginx
+
+- name: Reiniciar Nginx para aplicar cambios
+  service:
+    name: nginx
+    state: restarted
+  become: yes
+  tags: nginx
+

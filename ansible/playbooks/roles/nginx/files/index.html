@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>InfraCloud Solutions</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <div class="badge">☁️</div>
+        <div>
+          <h1>InfraCloud Solutions</h1>
+          <div class="lead">Infraestructura en la nube • Automatización • Seguridad</div>
+        </div>
+      </div>
+      <div class="small">Iñaki Arévalo Peña - TFG ASIR 2025</div>
+    </header>
+
+    <section class="hero">
+      <h2>Demostración: Infraestructura en la nube con automatización</h2>
+      <p class="small">Este sitio es una página de prueba alojada en un servidor Ubuntu con Nginx. Muestra el result>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Servicios</h3>
+          <ul>
+            <li>Despliegue de infraestructuras en Azure</li>
+            <li>Automatización con Terraform + Ansible</li>
+            <li>Servidores Linux y configuración de Nginx</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Tecnologías</h3>
+          <div class="techs">
+            <span class="tag">Ubuntu</span>
+            <span class="tag">Nginx</span>
+            <span class="tag">Terraform</span>
+            <span class="tag">Ansible</span>
+            <span class="tag">Azure</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Estado del servidor</h3>
+          <p id="status">Comprobando...</p>
+          <p class="small">Última comprobación: <span id="now">—</span></p>
+        </div>
+      </div>
+    </section>
+    <section class="section tfg-info">
+       <h2 class="section-title">Sobre mi TFG</h2>
+         <p>Este proyecto consiste en montar una infraestructura en la nube utilizando <strong>Azure</strong> y auto>
+         <p>El objetivo es aprender competencias muy demandadas en el ámbito profesional de TI, como administración >
+    </section>
+
+
+    <footer>
+      <div>InfraCloud Solutions</div>
+      <div class="small">Página de demostración - Creada por Iñaki</div>
+    </footer>
+  </div>
+
+<script>
+  function updateStatus(){
+    document.getElementById('now').textContent = new Date().toLocaleString();
+    document.getElementById('status').textContent = 'Servidor activo — Nginx responde correctamente';
+  }
+  updateStatus();
+  setInterval(updateStatus,10000);
+</script>
+</body>
+</html>
+
