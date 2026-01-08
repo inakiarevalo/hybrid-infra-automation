@@ -129,6 +129,15 @@ This project was developed as my **Final Degree Project**, representing the culm
 * **Competencies**: Infrastructure as Code (IaC), Configuration Management, Hybrid Cloud Architecture, and Security Hardening.
 
 ---
+
+### 📚 Project Documentation
+The following documents provide the full theoretical and technical background of the project:
+
+* 📄 **[Technical Dissertation (Spanish)](docs/Hybrid_Cloud_Automation_Thesis.pdf)** - A comprehensive 136-page study on Hybrid Cloud architectures and IaC.
+* 📊 **[Executive Presentation (Spanish)](docs/Hybrid_Cloud_Automation_Presentation.pdf)** - Visual summary of the project's goals, implementation, and results.
+
+---
+
 *Developed with ❤️ as a demonstration of professional DevOps practices.*
 
 
