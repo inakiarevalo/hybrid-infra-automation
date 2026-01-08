@@ -110,6 +110,24 @@ Below is the organized directory structure of this hybrid environment:
             └── maintenance/    # Backups & Cron jobs
 ```
 
+## 🛠️ Troubleshooting & Debugging
+
+This section covers the most common technical challenges encountered during the project and their solutions:
+
+### 1. Azure Authentication Errors (Terraform)
+* **Issue:** `AuthorizationFailed` error during `terraform apply`.
+* **Solution:** Ensure the **Service Principal** has the `Contributor` role assigned at the Subscription level. Double-check that environment variables (`ARM_CLIENT_ID`, `ARM_CLIENT_SECRET`, `ARM_TENANT_ID`) are correctly exported in the current shell session.
+
+### 2. Ansible SSH Connectivity
+* **Issue:** Ansible fails to connect to local nodes or Azure instances.
+* **Solution:** * Verify that the private SSH key has the correct permissions (`chmod 400`).
+    * Ensure port 22 is open in the **Network Security Group (NSG)** for your specific public IP.
+    * Confirm the `remote_user` in the `inventory.ini` has **passwordless sudo** privileges for automation tasks.
+
+### 3. Latency in Hybrid Environments
+* **Issue:** Task timeouts when running playbooks between On-premises and Cloud.
+* **Solution:** Increased the `timeout` value in `ansible.cfg` and enabled **SSH pipelining** to optimize task execution over WAN connections.
+
 ## 🧹 Resource Cleanup
 > [!CAUTION]
 > **Resource Cleanup**
