@@ -1,0 +1,34 @@
+name: 'Infrastructure Validation'
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  terraform-ansible-check:
+    name: 'Linting & Validation'
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
+
+    - name: Terraform Init & Validate
+      run: |
+        cd terraform  # Ajusta esta ruta si tu carpeta se llama distinto
+        terraform init -backend=false
+        terraform validate
+
+    - name: Install Ansible
+      run: sudo apt-get update && sudo apt-get install -y ansible-lint
+
+    - name: Ansible Lint
+      run: |
+        # Esto revisa que tus playbooks no tengan errores de sintaxis
+        ansible-lint ansible/*.yml 
+      continue-on-error: true 
