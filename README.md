@@ -154,7 +154,7 @@ This project was developed as my **Final Degree Project**, representing the culm
 ### 📚 Project Documentation
 The following documents provide the full theoretical and technical background of the project:
 
-* 📄 **[Technical Dissertation (Spanish)](docs/Hybrid_Cloud_Automation_Thesis.pdf)** - A comprehensive 136-page study on Hybrid Cloud architectures and IaC.
+* 📄 **[Technical Dissertation (Spanish)](docs/Hybrid_Cloud_Automation_Thesis.pdf)** - A comprehensive technical guide based on a 136-page study of Hybrid Cloud architectures and Infrastructure as Code (IaC).
 * 📊 **[Executive Presentation (Spanish)](docs/Hybrid_Cloud_Automation_Presentation.pdf)** - Visual summary of the project's goals, implementation, and results.
 
 ---
