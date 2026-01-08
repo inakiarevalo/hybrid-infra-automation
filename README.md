@@ -1,7 +1,7 @@
 # ☁️ Hybrid Cloud Automation: Terraform & Ansible Integration (Azure & On-premises)
 ![Validation Status](https://github.com/inakiarevalo/hybrid-infra-automation/actions/workflows/ci-validation.yml/badge.svg)
 
-![Hybrid Cloud Automation Workflow](images/hybrid-cloud-workflow.jpg)
+![Hybrid Cloud Automation Workflow](images/hybrid-cloud-workflow.png)
 
 This repository implements a professional **IaC (Infrastructure as Code)** and **Configuration Management** workflow. It demonstrates a hybrid automation model where infrastructure is provisioned in **Azure** using **Terraform** and managed from a local **On-premises** environment with **Ansible**.
 
